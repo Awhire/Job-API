@@ -27,7 +27,7 @@ const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
 
-
+app.set('trust proxy', "100.20.92.101");
 // Middleware
 app.use(express.json())
 app.use(helmet())
@@ -35,18 +35,16 @@ app.use(cors())
 app.use(xss())
 app.use(
     rateLimiter({
-        windowMs: 15 * 60 * 1000, // 15 minutes
-        limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-        standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	    legacyHeaders: true, // Disable the `X-RateLimit-*` headers
+        windowMs: 15 * 60 * 1000,
+        limit: 100,
 }))
 
 
 
 // routes
-// app.use('/', (req, res) => { 
-//     res.send('jobs api')
-//  })
+app.use('/', (req, res) => { 
+    res.send('<h1>jobs api</h1> <a href="#> Swagger Ui </a>')
+ })
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
