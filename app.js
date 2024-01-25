@@ -42,9 +42,9 @@ app.use(
 
 
 // routes
-app.use('/', (req, res) => { 
-    res.send('<h1>jobs api</h1> <a href="#> Swagger Ui </a>')
- })
+// app.use('/', (req, res) => { 
+//     res.send('<h1>jobs api</h1> <a href="#"> Swagger Ui </a>')
+//  })
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
