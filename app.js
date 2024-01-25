@@ -38,15 +38,15 @@ app.use(
         windowMs: 15 * 60 * 1000, // 15 minutes
         limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
         standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+	    legacyHeaders: true, // Disable the `X-RateLimit-*` headers
 }))
-// extra packages
+
 
 
 // routes
-app.use('/', (req, res) => { 
-    res.send('jobs api')
- })
+// app.use('/', (req, res) => { 
+//     res.send('jobs api')
+//  })
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
